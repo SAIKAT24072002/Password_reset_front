@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+
 function ResetPassword() {
   const { token } = useParams();
   const navigate = useNavigate();
@@ -18,7 +20,7 @@ function ResetPassword() {
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/auth/reset-password/${token}`);
+        const response = await axios.get(`${API_URL}/api/auth/reset-password/${token}`);
         if (response.data.success) {
           setIsTokenValid(true);
         }
@@ -53,7 +55,7 @@ function ResetPassword() {
     setLoading(true);
 
     try {
-      const response = await axios.post(`http://localhost:4000/api/auth/reset-password/${token}`, {
+      const response = await axios.post(`${API_URL}/api/auth/reset-password/${token}`, {
         password,
       });
 
