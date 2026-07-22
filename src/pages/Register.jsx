@@ -44,10 +44,10 @@ function Register() {
         localStorage.setItem('user', JSON.stringify(response.data.user));
       }
 
-      setSuccess('Account created successfully! Redirecting to Login...');
+      setSuccess('Account created successfully! Redirecting to Home Dashboard...');
       setTimeout(() => {
-        navigate('/login');
-      }, 2000);
+        navigate('/home');
+      }, 1200);
     } catch (err) {
       setError(
         err.response?.data?.message || 'Failed to create account. Please try again.'

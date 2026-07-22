@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -12,6 +12,14 @@ function Login() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Redirect if already logged in
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/home');
+    }
+  }, [navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -30,10 +38,10 @@ function Login() {
         localStorage.setItem('user', JSON.stringify(response.data.user));
       }
 
-      setSuccess('Logged in successfully! Redirecting...');
+      setSuccess('Logged in successfully! Redirecting to Home...');
       setTimeout(() => {
-        // Clear success message or navigate
-      }, 1500);
+        navigate('/home');
+      }, 1000);
     } catch (err) {
       setError(
         err.response?.data?.message || 'Invalid email or password. Please try again.'

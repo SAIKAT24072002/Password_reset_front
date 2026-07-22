@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
+import LandingHome from './pages/LandingHome';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
@@ -6,6 +8,14 @@ import ResetPassword from './pages/ResetPassword';
 
 function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/login');
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark navbar-custom py-3 px-4">
@@ -17,17 +27,40 @@ function Header() {
 
         <div className="d-flex align-items-center gap-2 ms-auto">
           <Link
-            to="/login"
-            className={`btn btn-sm ${location.pathname === '/login' || location.pathname === '/' ? 'btn-primary' : 'btn-outline-light'} px-3`}
+            to="/"
+            className={`btn btn-sm ${location.pathname === '/' ? 'btn-primary' : 'btn-outline-light'} px-3`}
           >
-            Sign In
+            Home
           </Link>
-          <Link
-            to="/register"
-            className={`btn btn-sm ${location.pathname === '/register' ? 'btn-primary' : 'btn-outline-light'} px-3`}
-          >
-            Register
-          </Link>
+
+          {token ? (
+            <>
+              <Link
+                to="/home"
+                className={`btn btn-sm ${location.pathname === '/home' ? 'btn-primary' : 'btn-outline-light'} px-3`}
+              >
+                Dashboard
+              </Link>
+              <button onClick={handleLogout} className="btn btn-sm btn-outline-danger px-3">
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className={`btn btn-sm ${location.pathname === '/login' ? 'btn-primary' : 'btn-outline-light'} px-3`}
+              >
+                Sign In
+              </Link>
+              <Link
+                to="/register"
+                className={`btn btn-sm ${location.pathname === '/register' ? 'btn-primary' : 'btn-outline-light'} px-3`}
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
@@ -41,7 +74,8 @@ function App() {
         <Header />
         <main className="flex-grow-1 d-flex flex-column justify-content-center">
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<LandingHome />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
