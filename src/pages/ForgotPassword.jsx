@@ -92,6 +92,12 @@ function ForgotPassword() {
             </button>
           </form>
 
+          <div className="text-center mt-4 pt-3 border-top border-secondary border-opacity-10">
+            <span className="text-muted me-2">Remembered your password?</span>
+            <Link to="/login" className="text-primary text-decoration-none fw-semibold">
+              Back to Sign In
+            </Link>
+          </div>
         </div>
       </div>
     </div>

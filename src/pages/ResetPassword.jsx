@@ -59,9 +59,9 @@ function ResetPassword() {
         password,
       });
 
-      setSuccess('Your password has been reset successfully! Redirecting...');
+      setSuccess('Your password has been reset successfully! Redirecting to Login...');
       setTimeout(() => {
-        navigate('/');
+        navigate('/login');
       }, 2500);
     } catch (err) {
       setError(
