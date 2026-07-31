@@ -67,7 +67,7 @@ body {
 }
 
 .form-control::placeholder {
-  color: var(--text-secondary) !important;
+  color: var(--text-secondary);
 }
 
 /* Premium Buttons */
@@ -182,20 +182,45 @@ body {
 .form-floating > label::after {
   background-color: transparent !important;
   color: var(--text-secondary) !important;
+  transition: all 0.2s ease-in-out !important;
+  padding-left: 1rem !important;
+  padding-top: 1rem !important;
 }
 
 .form-floating > .form-control:focus ~ label,
 .form-floating > .form-control:not(:placeholder-shown) ~ label {
   color: var(--primary-color) !important;
+  transform: scale(0.85) translateY(-0.6rem) translateX(0.15rem) !important;
+  background-color: transparent !important;
+}
+
+/* Consolidated floating controls spacing */
+.form-floating {
+  margin-bottom: 1.25rem;
+  position: relative;
 }
 
 .form-floating > .form-control {
-  padding-top: 2rem !important;
-  padding-bottom: 0.75rem !important;
+  padding-top: 1.625rem !important;
+  padding-bottom: 0.625rem !important;
+  padding-left: 1rem !important;
+  padding-right: 3rem !important; /* Spacing on the right for password eye toggle */
+  height: 3.6rem !important;
+  border-radius: 10px !important;
 }
 
-.form-floating > .form-control::placeholder {
+/* Hide placeholders when label is overlapping (i.e. input is not focused and empty) */
+.form-floating > .form-control:not(:focus)::placeholder {
   color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  opacity: 0 !important;
+}
+
+/* Show placeholder only when focused */
+.form-floating > .form-control:focus::placeholder {
+  color: var(--text-secondary) !important;
+  -webkit-text-fill-color: var(--text-secondary) !important;
+  opacity: 0.5 !important;
 }
 
 /* Ensure password dots and all input text are visible on dark background */
@@ -207,23 +232,29 @@ body {
   caret-color: #f8fafc !important;
 }
 
-/* Fix browser autofill dark background */
-
-/* Password toggle button styling */
+/* Premium clearly-visible Password Toggle Eye Icon styling */
 .password-toggle {
-  padding: 0.25rem;
-  color: var(--primary-color);
-  opacity: 0.9;
-  transition: opacity 0.2s ease, color 0.2s ease;
-}
-.password-toggle:hover {
-  opacity: 1;
-  color: var(--secondary-color);
-}
-.password-toggle i {
-  font-size: 1.1rem;
+  color: #cbd5e1 !important; /* brighter gray for high contrast in dark mode */
+  opacity: 0.8 !important;
+  font-size: 1.25rem !important;
+  transition: color 0.2s ease, opacity 0.2s ease, transform 0.2s ease !important;
+  z-index: 5;
+  background: none !important;
+  border: none !important;
 }
 
+.password-toggle:hover {
+  color: #ffffff !important; /* pure white on hover */
+  opacity: 1 !important;
+  transform: translateY(-50%) scale(1.15) !important; /* scale up slightly on hover and keep vertical alignment */
+}
+
+.password-toggle:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Autofill fixes for Webkit browsers */
 .form-control:-webkit-autofill,
 .form-control:-webkit-autofill:hover,
 .form-control:-webkit-autofill:focus {
