@@ -190,8 +190,8 @@ body {
 }
 
 .form-floating > .form-control {
-  padding-top: 1.625rem !important;
-  padding-bottom: 0.625rem !important;
+  padding-top: 2rem !important;
+  padding-bottom: 0.75rem !important;
 }
 
 .form-floating > .form-control::placeholder {
@@ -208,6 +208,22 @@ body {
 }
 
 /* Fix browser autofill dark background */
+
+/* Password toggle button styling */
+.password-toggle {
+  padding: 0.25rem;
+  color: var(--primary-color);
+  opacity: 0.9;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+.password-toggle:hover {
+  opacity: 1;
+  color: var(--secondary-color);
+}
+.password-toggle i {
+  font-size: 1.1rem;
+}
+
 .form-control:-webkit-autofill,
 .form-control:-webkit-autofill:hover,
 .form-control:-webkit-autofill:focus {

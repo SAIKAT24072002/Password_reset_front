@@ -123,26 +123,34 @@ function Register() {
               />
               <label htmlFor="regPassword">Password (min 6 chars)</label>
               <button
-                type="button"
-                className="btn btn-link position-absolute end-0 top-50 translate-middle-y me-2 text-decoration-none text-muted"
-                onClick={() => setShowPassword(!showPassword)}
-                tabIndex="-1"
-              >
-                <i className={`bi ${showPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'}`}></i>
-              </button>
+                  type="button"
+                  className="btn btn-link position-absolute end-0 top-50 translate-middle-y me-2 text-decoration-none password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                  tabIndex="-1"
+                >
+                  <i className={`bi ${showPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'}`}></i>
+                </button>
             </div>
 
-            <div className="form-floating mb-4">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                className="form-control"
-                id="regConfirmPassword"
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-              />
-              <label htmlFor="regConfirmPassword">Confirm Password</label>
+            <div className="form-floating mb-4 position-relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  className="form-control"
+                  id="regConfirmPassword"
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                />
+                <label htmlFor="regConfirmPassword">Confirm Password</label>
+                <button
+                  type="button"
+                  className="btn btn-link position-absolute end-0 top-50 translate-middle-y me-2 text-decoration-none password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                  tabIndex="-1"
+                >
+                  <i className={`bi ${showPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'}`}></i>
+                </button>
             </div>
 
             <button

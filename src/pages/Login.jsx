@@ -105,7 +105,7 @@ function Login() {
               <label htmlFor="loginPassword">Password</label>
               <button
                 type="button"
-                className="btn btn-link position-absolute end-0 top-50 translate-middle-y me-2 text-decoration-none text-muted"
+                className="btn btn-link position-absolute end-0 top-50 translate-middle-y me-2 text-decoration-none password-toggle"
                 onClick={() => setShowPassword(!showPassword)}
                 tabIndex="-1"
               >

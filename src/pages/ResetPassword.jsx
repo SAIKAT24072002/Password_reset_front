@@ -12,6 +12,7 @@ function ResetPassword() {
   const [isTokenValid, setIsTokenValid] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
@@ -114,9 +115,9 @@ function ResetPassword() {
 
               {isTokenValid ? (
                 <form onSubmit={handleResetPassword}>
-                  <div className="form-floating mb-3">
+                  <div className="form-floating mb-3 position-relative">
                     <input
-                      type="password"
+                      type={showPassword ? 'text' : 'password'}
                       className="form-control"
                       id="floatingPassword"
                       placeholder="New Password"
@@ -125,11 +126,19 @@ function ResetPassword() {
                       required
                     />
                     <label htmlFor="floatingPassword">New Password</label>
+                    <button
+                      type="button"
+                      className="btn btn-link position-absolute end-0 top-50 translate-middle-y me-2 text-decoration-none password-toggle"
+                      onClick={() => setShowPassword(!showPassword)}
+                      tabIndex="-1"
+                    >
+                      <i className={`bi ${showPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'}`}></i>
+                    </button>
                   </div>
 
-                  <div className="form-floating mb-4">
+                  <div className="form-floating mb-4 position-relative">
                     <input
-                      type="password"
+                      type={showPassword ? 'text' : 'password'}
                       className="form-control"
                       id="floatingConfirmPassword"
                       placeholder="Confirm Password"
@@ -138,6 +147,14 @@ function ResetPassword() {
                       required
                     />
                     <label htmlFor="floatingConfirmPassword">Confirm Password</label>
+                    <button
+                      type="button"
+                      className="btn btn-link position-absolute end-0 top-50 translate-middle-y me-2 text-decoration-none password-toggle"
+                      onClick={() => setShowPassword(!showPassword)}
+                      tabIndex="-1"
+                    >
+                      <i className={`bi ${showPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'}`}></i>
+                    </button>
                   </div>
 
                   <button
