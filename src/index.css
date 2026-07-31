@@ -197,3 +197,22 @@ body {
 .form-floating > .form-control::placeholder {
   color: transparent !important;
 }
+
+/* Ensure password dots and all input text are visible on dark background */
+.form-control[type="password"],
+.form-control[type="text"],
+.form-control[type="email"] {
+  color: #f8fafc !important;
+  -webkit-text-fill-color: #f8fafc !important;
+  caret-color: #f8fafc !important;
+}
+
+/* Fix browser autofill dark background */
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover,
+.form-control:-webkit-autofill:focus {
+  -webkit-text-fill-color: #f8fafc !important;
+  -webkit-box-shadow: 0 0 0 1000px rgba(15, 15, 20, 0.9) inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
